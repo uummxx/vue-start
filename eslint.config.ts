@@ -4,7 +4,9 @@ export default antfu({
   vue: true,
   typescript: true,
   unocss: true,
-  formatters: {
-    css: 'prettier',
+}, {
+  settings: {
+    'import/core-modules': ['vue-router/auto-routes'],
   },
+
 })

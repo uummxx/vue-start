@@ -5,10 +5,13 @@ defineProps<{ msg: string }>()
 <template>
   <div class="size-full bg flex justify-center items-center">
     <div class="size-500px relative rounded-full flex items-center justify-center rounded-full">
-      <div class="rounded-full blur-lg filter-drop-shadow border-solid border-10px border-red" />
-      <h1 class="text-3xl font-bold text-center c-white p-4">
-        {{ msg }}
-      </h1>
+      <div>
+        <div class="rounded-full blur-lg filter-drop-shadow border-solid border-10px border-red" />
+        <h1 class="text-3xl font-bold text-center c-white p-4">
+          {{ msg }}
+        </h1>
+        <span class="c-white">build with vite + vue3 + typescript + unocss + auto-import + auto-layouts + auto-routes</span>
+      </div>
     </div>
   </div>
 </template>

@@ -12,5 +12,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./../src/components/HelloWorld.vue')['default']
+    Logger: typeof import('./../src/components/Logger.vue')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
   }
 }

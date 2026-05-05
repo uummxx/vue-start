@@ -1,9 +1,9 @@
+import type { Module } from '~/types.ts'
 import { createApp } from 'vue'
 import App from './App.vue'
-import 'uno.css'
-import 'virtual:uno.css'
-import '@unocss/reset/sanitize/sanitize.css'
-import '@unocss/reset/sanitize/assets.css'
-import './assets/style/reset.scss'
+// reset style
+import '~/assets/style/reset.ts'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+Object.values(import.meta.glob<{ install: Module }>('./modules/*.ts', { eager: true })).forEach(i => i.install?.(app))
+app.mount('#app')
