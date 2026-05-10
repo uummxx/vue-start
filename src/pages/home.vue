@@ -6,8 +6,6 @@ definePage({
   },
   alias: ['/', '/home'],
 })
-const route = useRoute()
-logger.debug('route', route)
 </script>
 
 <template>

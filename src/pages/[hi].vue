@@ -4,7 +4,6 @@ definePage({
   meta: {
 
   },
-  alias: ['/hi'],
 })
 </script>
 
