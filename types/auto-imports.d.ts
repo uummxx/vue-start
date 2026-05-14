@@ -81,7 +81,7 @@ declare global {
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
-  export type { Logger } from '../src/utils/logger'
+  export type { Logger, LogLevel, LoggerStorage, LogEntry } from '../src/utils/logger'
   import('../src/utils/logger')
 }
 

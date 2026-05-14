@@ -1,6 +1,6 @@
 import packageJson from '../../package.json'
 
-type LogLevel = 'debug' | 'log' | 'info' | 'warn' | 'error'
+export type LogLevel = 'debug' | 'log' | 'info' | 'warn' | 'error'
 interface LoggerColor {
     debug?: string
     log?: string
@@ -28,7 +28,7 @@ const defaultConfig: LoggerConfig = {
     level: VITE_APP_LOG_LEVEL || 'log',
 }
 
-type LoggerStorage = {
+export type LoggerStorage = {
     [key in LogLevel]: {
         name: string
         level: LogLevel
@@ -37,6 +37,8 @@ type LoggerStorage = {
         args: any[]
     }[]
 }
+
+export type LogEntry = LoggerStorage[keyof LoggerStorage][number]
 
 export const loggerStorage = reactive<LoggerStorage>({
     debug: [],
@@ -125,8 +127,25 @@ export class Logger {
         return loggerStorage[level] || []
     }
 
-    format(Log: LoggerStorage[keyof LoggerStorage][number]): string {
-        return `[${new Date(Log.timestamp).toLocaleTimeString()} - ${Log.level.toUpperCase()} - ${Log.name}: ${Log.args.join(' ')}]`
+    clearLogs(): void {
+        for (const key of Object.keys(loggerStorage) as LogLevel[]) {
+            loggerStorage[key].length = 0
+        }
+    }
+
+    getFilteredLogs(levels: LogLevel[]): LogEntry[] {
+        const entries: LogEntry[] = []
+        for (const level of levels) {
+            entries.push(...loggerStorage[level])
+        }
+        return entries.sort((a, b) => a.timestamp - b.timestamp)
+    }
+
+    format(log: LogEntry): string {
+        const formatted = log.args.map(a =>
+            typeof a === 'object' ? JSON.stringify(a) : String(a)
+        ).join(' ')
+        return `[${new Date(log.timestamp).toLocaleTimeString()} - ${log.level.toUpperCase()} - ${log.name}: ${formatted}]`
     }
 }
 

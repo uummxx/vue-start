@@ -15,5 +15,6 @@ declare module 'vue' {
     Logger: typeof import('./../src/components/Logger.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    ULogger: typeof import('./../src/components/u-logger.vue')['default']
   }
 }
